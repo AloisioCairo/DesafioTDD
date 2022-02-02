@@ -16,7 +16,7 @@ describe("Create a new user", () => {
   it("should be able to create a new user", async () => {
     const user = {
       name: "aloisio",
-      email: "aloisio@teste.com.br",
+      email: "aloisio@teste4.com.br",
       password: "123",
     }
 
@@ -37,7 +37,7 @@ describe("Create a new user", () => {
     expect(async () => {
       const user = {
         name: "aloisio",
-        email: "aloisio@teste.com.br",
+        email: "aloisio@teste4.com.br",
         password: "123",
       }
 
