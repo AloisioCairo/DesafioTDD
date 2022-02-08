@@ -15,7 +15,7 @@ describe("Create a new user", () => {
 
   it("should be able to create a new user", async () => {
     const user = {
-      name: "aloisio",
+      name: "aloisio1",
       email: "aloisio@teste4.com.br",
       password: "123",
     }
@@ -28,7 +28,11 @@ describe("Create a new user", () => {
       password: passwordHash,
     });
 
+    console.log('11111111');
+
     const userCreated = await inMemoryUsersRepository.findByEmail(user.email);
+
+    console.log('userCreated__' + userCreated?.id);
 
     expect(userCreated).toHaveProperty("id");
   })
