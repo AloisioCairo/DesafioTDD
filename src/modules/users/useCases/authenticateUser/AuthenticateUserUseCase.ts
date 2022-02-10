@@ -23,15 +23,26 @@ export class AuthenticateUserUseCase {
   async execute({ email, password }: IRequest): Promise<IAuthenticateUserResponseDTO> {
     const user = await this.usersRepository.findByEmail(email);
 
+
+    console.log('user__' + user);
+
     if(!user) {
       throw new IncorrectEmailOrPasswordError();
     }
 
+    console.log('email=' + email);
+    console.log('password=' + password);
+    console.log('user.password=' + user.password);
+
     const passwordMatch = await compare(password, user.password);
 
+    console.log('passwordMatch__' + passwordMatch);
+    
     if (!passwordMatch) {
+      console.log('erro_email_password');
+      
       throw new IncorrectEmailOrPasswordError();
-    }
+    }    
 
     const { secret, expiresIn } = authConfig.jwt;
 
@@ -39,6 +50,8 @@ export class AuthenticateUserUseCase {
       subject: user.id,
       expiresIn,
     });
+
+    console.log('token__' + token);
 
     return {
       user: {

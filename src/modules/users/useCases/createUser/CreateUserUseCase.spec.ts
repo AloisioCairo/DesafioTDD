@@ -28,14 +28,10 @@ describe("Create a new user", () => {
       password: passwordHash,
     });
 
-    console.log('11111111');
-
     const userCreated = await inMemoryUsersRepository.findByEmail(user.email);
 
-    console.log('userCreated__' + userCreated?.id);
-
     expect(userCreated).toHaveProperty("id");
-  })
+  });
 
   it("should be able to create a new user with name exists", async () => {
     expect(async () => {

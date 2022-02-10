@@ -20,12 +20,12 @@ export class CreateUserUseCase {
       throw new CreateUserError();
     }
 
-    const passwordHash = await hash(password, 8);
+    // const passwordHash = await hash(password, 8);
 
     const user = await this.usersRepository.create({
       email,
       name,
-      password: passwordHash,
+      password: password,
     });
 
     return user;

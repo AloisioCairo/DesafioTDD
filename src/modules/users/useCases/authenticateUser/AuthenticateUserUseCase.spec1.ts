@@ -26,7 +26,7 @@ describe("should return info the user authenticat", () => {
       it("should be able to create a new user", async () => {
         const user = {          
           name: "aloisio",
-          email: "aloisio@teste3.com.br",
+          email: "aloisio@teste.com.br",
           password: "123",
         }
     
