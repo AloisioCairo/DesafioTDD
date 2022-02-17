@@ -31,6 +31,7 @@ export class AuthenticateUserUseCase {
     }
 
     console.log('email=' + email);
+    console.log('user.email=' + user.email);
     console.log('password=' + password);
     console.log('user.password=' + user.password);
 
@@ -42,7 +43,7 @@ export class AuthenticateUserUseCase {
       console.log('erro_email_password');
       
       throw new IncorrectEmailOrPasswordError();
-    }    
+    }
 
     const { secret, expiresIn } = authConfig.jwt;
 

@@ -24,14 +24,14 @@ describe('return info the user authenticat', () => {
     it("should return info the user authenticat",  async() => {
 
         const user = {
-            name: "aloisio",
-            email: "aloisio@testecontroller.com.br",
-            password: "testecontroller",
+            name: "aloisio1",
+            email: "aloisio1@testecontroller.com.br",
+            password: "password",
         }
       
         const passwordHash = await hash(user.password, 8);
 
-        // const password = await hash("testeController", 8);
+        // const password = await hash("password", 8);
 
         console.log('password__1_' + passwordHash);
 
@@ -45,7 +45,7 @@ describe('return info the user authenticat', () => {
 
         const responseSession = await request(app).post("/api/v1/sessions").send({
             email: user.email,
-            password: passwordHash,
+            password: user.password,
         });    
         
 
