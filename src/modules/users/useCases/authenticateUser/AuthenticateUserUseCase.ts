@@ -23,36 +23,23 @@ export class AuthenticateUserUseCase {
   async execute({ email, password }: IRequest): Promise<IAuthenticateUserResponseDTO> {
     const user = await this.usersRepository.findByEmail(email);
 
-
-    console.log('user__' + user);
-
     if(!user) {
       throw new IncorrectEmailOrPasswordError();
     }
 
-    console.log('email=' + email);
-    console.log('user.email=' + user.email);
-    console.log('password=' + password);
-    console.log('user.password=' + user.password);
-
     const passwordMatch = await compare(password, user.password);
-
-    console.log('passwordMatch__' + passwordMatch);
     
-    if (!passwordMatch) {
-      console.log('erro_email_password');
-      
+    if (!passwordMatch) {      
       throw new IncorrectEmailOrPasswordError();
     }
 
-    const { secret, expiresIn } = authConfig.jwt;
+    const { expiresIn } = authConfig.jwt;
+    const secret = process.env.JWT_SECRET as string;
 
     const token = sign({ user }, secret, {
       subject: user.id,
       expiresIn,
     });
-
-    console.log('token__' + token);
 
     return {
       user: {

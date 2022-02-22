@@ -17,7 +17,7 @@ describe('return info the user authenticat', () => {
     });
 
     afterAll(async () => {
-        // await connection.dropDatabase();
+        await connection.dropDatabase();
         await connection.close();
     })
 
@@ -31,10 +31,6 @@ describe('return info the user authenticat', () => {
       
         const passwordHash = await hash(user.password, 8);
 
-        // const password = await hash("password", 8);
-
-        console.log('password__1_' + passwordHash);
-
         const response = await request(app).post("/api/v1/users").send({
             name: user.name,
             email: user.email,
@@ -45,13 +41,9 @@ describe('return info the user authenticat', () => {
 
         const responseSession = await request(app).post("/api/v1/sessions").send({
             email: user.email,
-            password: user.password,
+            password: passwordHash,//user.password,
         });    
         
-
         expect(responseSession.status).toBe(200);
-        
-        // expect(responseSession.body.length).toBe(1);
-        // expect(response.body[0]).toHaveProperty("user")
     })
 })
