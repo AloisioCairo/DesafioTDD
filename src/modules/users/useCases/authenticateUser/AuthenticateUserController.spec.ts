@@ -37,11 +37,9 @@ describe('return info the user authenticat', () => {
             password: passwordHash
         });
 
-        // expect(response.status).toBe(201);
-
         const responseSession = await request(app).post("/api/v1/sessions").send({
             email: user.email,
-            password: passwordHash,//user.password,
+            password: passwordHash,
         });    
         
         expect(responseSession.status).toBe(200);

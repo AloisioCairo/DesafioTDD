@@ -23,8 +23,8 @@ describe('Create user controller', () => {
         const password = await hash("testeController", 8);
 
         const response = await request(app).post("/api/v1/users").send({
-            name: "aloisio",
-            email: "aloisio@teste.com.br",
+            name: "aloisio3",
+            email: "aloisio3@teste.com.br",
             password: password
         });
 
